@@ -8,25 +8,28 @@
 import Foundation
 
 struct CoinArrayViewModel {
-    let coin: [CoinContent]
+    let coin: CoinContent
 }
 extension CoinArrayViewModel {
     func cellForRowAt(_ index: Int) -> CoinViewModel {
-        let coin = self.coin[index]
+        let coin = self.coin.rates[index]
         return CoinViewModel(coin)
     }
     func numberOfRowsInSection() -> Int{
-        return self.coin.count
+        return self.coin.rates.count
     }
-    
 }
 
 struct CoinViewModel {
-    let coinRate: CoinContent
+    let coinRate: rates
 }
 extension CoinViewModel {
-    init(_ coin: CoinContent) {
+    init(_ coin: rates) {
         self.coinRate = coin
+    }
+    
+    var time: String {
+        return coinRate.time
     }
     
     var coinName: String {

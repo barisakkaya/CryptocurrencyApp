@@ -8,7 +8,11 @@
 import Foundation
 
 struct CoinContent: Decodable {
-    let asset_id_quote: String
+    let rates: [rates]
+}
+
+struct rates: Decodable {
     let rate: String
     let time: String
+    let asset_id_quote: String
 }
