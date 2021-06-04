@@ -46,7 +46,7 @@ class CoinViewController: UIViewController, UITableViewDelegate, UITableViewData
         var randomG: Float = Float(Int.random(in: 0...255)/255)
         var randomB: Float = Float(Int.random(in: 0...255)/255)
         //tableCell.backgroundColor = UIColor(red: randomR, green: randomG, blue: randomB, alpha: 1.0)
-        print(randomB)
+        print(randomR)
 
         return tableCell
     }
