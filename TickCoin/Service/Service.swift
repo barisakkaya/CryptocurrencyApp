@@ -19,14 +19,12 @@ class Service {
                 print(error.localizedDescription)
                 completion(nil)
             }
-            else if let data = data {
-                let coinArray = try? JSONDecoder().decode(CoinContent.self, from: data)
-                print(coinArray?.rates[0].asset_id_quote)
-                
-                if let coinArray = coinArray {
-                    completion(coinArray)
+            if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                print("Response data string:\n \(dataString)")
+                let crytpoList = try? JSONDecoder().decode(CoinContent.self, from: data)
+                if let cryptoList = crytpoList {
+                    completion(cryptoList)
                 }
-            
             }
         }.resume()
     }

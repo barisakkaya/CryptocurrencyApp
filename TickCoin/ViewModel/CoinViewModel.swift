@@ -11,32 +11,33 @@ struct CoinArrayViewModel {
     let coin: CoinContent
 }
 extension CoinArrayViewModel {
-    func cellForRowAt(_ index: Int) -> CoinViewModel {
+    init(_ coin: CoinContent) {
+        self.coin = coin
+    }
+    func coinAtIndex(_ index: Int) -> RatesViewModel {
         let coin = self.coin.rates[index]
-        return CoinViewModel(coin)
+        return RatesViewModel(rate: coin)
     }
     func numberOfRowsInSection() -> Int{
         return self.coin.rates.count
     }
 }
 
-struct CoinViewModel {
-    let coinRate: rates
+
+
+struct RatesViewModel {
+    let coin: Rates
 }
-extension CoinViewModel {
-    init(_ coin: rates) {
-        self.coinRate = coin
+extension RatesViewModel {
+    init(rate: Rates) {
+        self.coin = rate
     }
-    
-    var time: String {
-        return coinRate.time
+    var price: Double {
+        return self.coin.rate
     }
-    
-    var coinName: String {
-        return coinRate.asset_id_quote
-    }
-    
-    var price: String {
-        return coinRate.rate
+    var name: String {
+        return self.coin.asset_id_quote
     }
 }
+
+

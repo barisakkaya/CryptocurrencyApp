@@ -9,6 +9,7 @@ import UIKit
 
 class CoinTableViewCell: UITableViewCell {
     @IBOutlet weak var coinName: UILabel!
+    
     @IBOutlet weak var coinPrice: UILabel!
     
     override func awakeFromNib() {

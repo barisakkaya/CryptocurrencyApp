@@ -35,23 +35,21 @@ class CoinViewController: UIViewController, UITableViewDelegate, UITableViewData
         
     }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.coinArrayViewModel == nil ? 0 : self.coinArrayViewModel.numberOfRowsInSection()
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let tableCell = tableView.dequeueReusableCell(withIdentifier: "CoinCell", for: indexPath) as! CoinTableViewCell
              
-        let coinViewModel = self.coinArrayViewModel.cellForRowAt((indexPath.row))
-             
-        tableCell.coinName.text = coinViewModel.coinName
-        tableCell.coinPrice.text = coinViewModel.price
-        var randomR: Float = Float(Int.random(in: 0...255)/255)
-        var randomG: Float = Float(Int.random(in: 0...255)/255)
-        var randomB: Float = Float(Int.random(in: 0...255)/255)
-        //tableCell.backgroundColor = UIColor(red: randomR, green: randomG, blue: randomB, alpha: 1.0)
-
+        let coinViewModel = self.coinArrayViewModel.coinAtIndex(indexPath.row)
+        print(coinViewModel.name)
+        print(coinViewModel.price)
+        
+        tableCell.coinName.text = coinViewModel.name
+        tableCell.coinPrice.text = String(format:"%.4f",1/coinViewModel.price)
+        
         return tableCell
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.coinArrayViewModel == nil ? 0 : self.coinArrayViewModel.numberOfRowsInSection()
     }
 
 }
